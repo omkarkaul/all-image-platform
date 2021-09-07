@@ -1,9 +1,7 @@
-import json
 import requests as r
 
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin, urlparse
-from utilities import RequestError
 
 class ImageService:
     def _is_valid(self, url):
