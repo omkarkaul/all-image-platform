@@ -52,7 +52,7 @@ class ImageService:
             return {"message": "Bad URL submitted"}, 400
 
         response = r.get(url)
-        soup = bs(response.content)
+        soup = bs(response.content, features="html.parser")
 
         url_list = []
         self._update_url_list(url, url_list, soup, "img", "src")

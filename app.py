@@ -22,4 +22,4 @@ def images():
     return json.dumps(response), code, {"Content-Type" : "application/json"}
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", debug=True, port=int(os.environ.get("PORT", 5000)))
+    app.run("0.0.0.0", port=int(os.environ.get("PORT", 5000)))
