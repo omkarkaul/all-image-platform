@@ -10,6 +10,7 @@ bs4 = "*"
 requests = "*"
 flask = "*"
 flask-cors = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
