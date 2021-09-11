@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
@@ -17,9 +18,15 @@ def ping():
 
 @app.route("/images", methods=["GET"])
 def images():
+    app.logger.debug(f"REQUEST ARGS: {dict(request.args)}")
     response, code = ImageService.get_all(request)
+    app.logger.debug(f"RESPONSE CODE: {code}\n")
 
     return json.dumps(response), code, {"Content-Type" : "application/json"}
 
 if __name__ == "__main__":
-    app.run("0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    print("Run \"start.sh\" to start the All Image service, do not run this file directly")
+else:
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
